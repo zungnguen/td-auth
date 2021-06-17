@@ -104,8 +104,151 @@
  
   </style>
   </head>
+  
   <p>You are not logged in</p>
   <p><a href="{% url 'login' %}">Log In</a></p>
   <p><a href="{% provider_login_url 'google' %}">Login With Google</a></p>
+  <body>
+    <script>
+    
+      function statusChangeCallback(response) {  // Called with the results from FB.getLoginStatus().
+        console.log('statusChangeCallback');
+        console.log(response);                   // The current login status of the person.
+        if (response.status === 'connected') {   // Logged into your webpage and Facebook.
+          testAPI();  
+        } else {                                 // Not logged into your webpage or we are unable to tell.
+          document.getElementById('status').innerHTML = 'Please log ' +
+            'into this webpage.';
+        }
+      }
+    
+    
+      function checkLoginState() {               // Called when a person is finished with the Login Button.
+        FB.getLoginStatus(function(response) {   // See the onlogin handler
+          statusChangeCallback(response);
+        });
+      }
+    
+    
+      window.fbAsyncInit = function() {
+        FB.init({
+          appId      : '{app-id}',
+          cookie     : true,                     // Enable cookies to allow the server to access the session.
+          xfbml      : true,                     // Parse social plugins on this webpage.
+          version    : '{api-version}'           // Use this Graph API version for this call.
+        });
+    
+    
+        FB.getLoginStatus(function(response) {   // Called after the JS SDK has been initialized.
+          statusChangeCallback(response);        // Returns the login status.
+        });
+      };
+     
+      function testAPI() {                      // Testing Graph API after login.  See statusChangeCallback() for when this call is made.
+        console.log('Welcome!  Fetching your information.... ');
+        FB.api('/me', function(response) {
+          console.log('Successful login for: ' + response.name);
+          document.getElementById('status').innerHTML =
+            'Thanks for logging in, ' + response.name + '!';
+        });
+      }
+    
+    </script>
+    
+    
+  
+    </body>
 {% endif %}
+<div class="MagicScroll">
+  <img src="https://study.com/cimages/multimages/16/ad9fd542-407c-4582-bd88-60e3ccfddb01_adobestock_97724364.jpeg" />
+  <img src="https://s3-assets.eastidahonews.com/wp-content/uploads/2020/04/08123219/online-learning.jpg" />
+  
+</div>
+<script src="scripts/jquery.tools.min.js" type="text/javascript"></script>
+<a class="prevPage left"></a>
+<div class="scrollable">
+    <div class="items">
+        <!-- 1-4 -->
+        <img src="http://londatiga.net/tutorials/scrollable/images/img1.jpg" />
+        <img src="http://londatiga.net/tutorials/scrollable/images/img2.jpg" />
+        <img src="http://londatiga.net/tutorials/scrollable/images/img3.jpg" />
+        <img src="http://londatiga.net/tutorials/scrollable/images/img4.jpg" />
+ 
+        <!-- 5-8 -->
+        <img src="http://londatiga.net/tutorials/scrollable/images/img5.jpg" />
+        <img src="http://londatiga.net/tutorials/scrollable/images/img6.jpg" />
+        <img src="http://londatiga.net/tutorials/scrollable/images/img7.jpg" />
+        <img src="http://londatiga.net/tutorials/scrollable/images/img8.jpg" />
+ 
+        <!-- 10-12 -->
+        <img src="http://londatiga.net/tutorials/scrollable/images/img9.jpg" />
+        <img src="http://londatiga.net/tutorials/scrollable/images/img10.jpg" />
+        <img src="http://londatiga.net/tutorials/scrollable/images/img11.jpg" />
+        <img src="http://londatiga.net/tutorials/scrollable/images/img12.jpg" />
+    </div>
+</div>
+ 
+<a class="nextPage right"></a>
+<style>
+  .scrollable {
+    background: #ccc;
+    position: relative;
+    overflow: hidden;
+    width: 690px;
+    height:145px;
+    border:1px solid #ccc;
+    -moz-border-radius:4px;
+    -webkit-border-radius:4px;
+}
+ 
+.scrollable .items {
+    width: 20000em;
+    position: absolute;
+    clear: both;
+}
+ 
+.scrollable img {
+    opacity: 0.6;
+    float:left;
+    margin:15px 5px 15px 15px;
+    background-color:#fff;
+    cursor:pointer;
+    width:150px;
+    height:113px;
+    -moz-border-radius:4px;
+    -webkit-border-radius:4px;
+}
+ 
+.scrollable .active {
+    opacity:1;
+    border:2px solid #000;
+    z-index:9999;
+    position:relative;
+}
+</style>
+<style>
+.scrollable { float:left; }
+ 
+a.left, a.right {
+    display: block;
+    width: 18px;
+    height: 18px;
+    float: left;
+    margin: 60px 10px;
+    cursor: pointer;
+}
+ 
+a.right { background: url(scrollable/arrow/right.png) no-repeat;  clear:right; margin-right: 0px;}
+a.right:hover  { background-position:0px -18px; }
+a.right:active  { background-position:0px 0px; }
+ 
+a.left  { background: url(scrollable/arrow/left.png) no-repeat;  margin-left: 0px; }
+a.left:hover  { background-position:0px -18px; }
+a.left:active  { background-position:-0px 0px; }
+ 
+a.disabled { visibility:hidden !important; }
+</style>
+<script>
+  $(function()  { $("div.scrollable").scrollable({size: 4}); });
+</script>
 {% endblock %}
