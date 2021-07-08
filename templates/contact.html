@@ -25,10 +25,12 @@
       text-decoration: none;
       font-size: 17px;
       border-bottom: 3px solid transparent;
-      
+      margin-left: 40px;
     }
+   
     .topnav li:last-child {
         background-color: rgba(243, 164, 73, 0.959);
+        margin-right: 0px
       }
       
     
@@ -39,11 +41,18 @@
     .topnav a.active {
       border-bottom: 3px solid red;
     }
+    .img-responsive {
+      height: auto;
+      width: auto;
+      max-height: 72px;
+      max-width: 250px;
+  }
     </style>
     </head>
     <body>
     
     <div class="topnav">
+      <a href ="home.html"><img src = "https://cdn.glitch.com/6f461df7-536f-4300-91ab-34df1fa6fcb8%2FTD%20ULTRA%20W%20BG.png" class="img-responsive"></a>
       <a class="active" href="http://127.0.0.1:8000/">Home</a>
       <a href="http://127.0.0.1:8000/pricing">Pricing</a>
       <a href="http://127.0.0.1:8000/contact">Contact</a>
